@@ -1,0 +1,28 @@
+NAME = "Ubuntu Cloud-Init VM"
+CPU  = 2
+VCPU = 2
+MEMORY = 4096
+
+DISK = [
+  IMAGE = "Ubuntu 20.04 Cloud",
+  IMAGE_UNAME = "oneadmin"
+]
+
+NIC = [
+  NETWORK = "macvlan-net"
+]
+
+GRAPHICS = [
+  TYPE = "VNC",
+  LISTEN = "0.0.0.0"
+]
+
+CONTEXT = [
+  NETWORK = "YES",
+  SSH_PUBLIC_KEY = "$USER[SSH_PUBLIC_KEY]",
+  USER_DATA = "$(cat cloudinit/user-data)"
+]
+
+OS = [
+  BOOT = "disk"
+]

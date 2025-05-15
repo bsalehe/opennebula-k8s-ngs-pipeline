@@ -1,0 +1,16 @@
+#cloud-config
+hostname: k8s-node
+users:
+  - name: oneadmin
+    ssh-authorized-keys:
+      - ssh-rsa ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDariDgXXak0t/dbUlQDItDICyyV2RdRc6MLjiPLmpiZXXkL+NlO0M6vxOcz5DEHZvCw08XQip481yx7lok4204Hrgwp4701K/S6WN95noXV0hTl5Ypj9VCcTACvpsQo1puOQT9bx5MqpkB0YXM+k5IfELCYlhrf3uiWt3>
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    groups: sudo
+    shell: /bin/bash
+package_update: true
+packages:
+  - qemu-guest-agent
+runcmd:
+  - systemctl enable qemu-guest-agent
+  - systemctl start qemu-guest-agent
+

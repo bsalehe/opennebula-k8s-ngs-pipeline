@@ -1,0 +1,25 @@
+# create_vm.yml
+- name: Create VM in OpenNebula
+  hosts: localhost
+  become: true
+  vars:
+    vm_name: "ansible-vm"
+    template_name: "ubuntu-cloud-vm-with-key"  # Change to your actual template name
+
+  tasks:
+    - name: Get template ID from name
+      shell: onetemplate list --csv | grep "{{ template_name }}" | cut -d, -f1
+      register: template_id
+
+    - name: Debug template ID
+      debug:
+        var: template_id.stdout
+
+    - name: Create a new VM from template
+      shell: onetemplate instantiate {{ template_id.stdout }} --name "{{ vm_name }}"
+      register: vm_creation
+
+    - name: Show VM creation output
+      debug:
+        var: vm_creation.stdout
+

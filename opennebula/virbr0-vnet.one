@@ -1,0 +1,3 @@
+NAME = "virbr0-vnet"
+VN_MAD = "bridge"
+BRIDGE = "virbr0"

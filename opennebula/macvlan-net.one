@@ -1,0 +1,10 @@
+NAME = "macvlan-net"
+VN_MAD = "dummy"
+BRIDGE = "macvlan0"
+PARENT = "wlp1s0"
+PHYDEV = "wlp1s0"
+AR = [
+  TYPE = "IP4",
+  IP = "192.168.1.190",
+  SIZE = "10"
+]
